@@ -1,0 +1,115 @@
+<!DOCTYPE html>  
+<html>  
+<head>   
+    <meta charset="utf-8"/>  
+    <title>H5端模拟长按事件</title>  
+    <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>  
+</head>  
+<body>  
+<div style="width:100%;">  
+    <div id="touchArea" style="width:90%; height:200px; background-color:#CCC;font-size:100px">长按我</div>   
+</div>  
+<script>
+  /* 方法一 */  
+  var timeOutEvent = 0;
+  $(function() {
+    $("#touchArea").on({
+      touchstart: function(e) {
+        timeOutEvent = setTimeout("longPress()", 500);
+        e.preventDefault();
+      },
+      touchmove: function() {
+        clearTimeout(timeOutEvent);
+        timeOutEvent = 0;
+      },
+      touchend: function() {
+        clearTimeout(timeOutEvent);
+        if (timeOutEvent != 0) {
+          alert("你这是点击，不是长按");
+        }
+        return false;
+      }
+    })
+  });
+  function longPress() {
+    timeOutEvent = 0;
+    alert("长按事件触发");
+  }
+
+  /* 方法二 */
+  /*var pressTimer = null;
+  var pressStartTime = '';
+  var pressEndTime = '';
+
+  // 兼容性处理事件绑定
+  var eventUtil = {
+    addHandler: function(element, type, handler, bubble) {
+      if (element.addEventListener) {
+        element.addEventListener(type, handler, bubble!=undefined ? bubble:true);
+      } else if (element.attachEvent) {
+        element.attachEvent("on" + type, handler);
+      } else {
+        element["on" + type] = handler;
+      }
+    },
+    removeHandler: function(element, type, handler) {
+      if (element.removeEventListener) {
+        element.removeEventListener(type, handler, bubble!=undefined ? bubble:true);
+      } else if (element.detachEvent) {
+        element.detachEvent("on" + type, handler);
+      } else {
+        element["on" + type] = null;
+      }
+    }
+  };
+
+  // h5 模拟长按事件
+  eventUtil.addHandler(document, 'touchstart', function(e){
+    pressStartTime = +new Date();
+    var event = e || window.event;
+    pressTimer = setTimeout(function(e) {
+      dmLongPressMonitor(event);
+    }, 700);
+    // event&&event.preventDefault();
+    // 判断默认行为是否可以被禁用
+    if (event.cancelable) {
+      // 判断默认行为是否已经被禁用
+      if (!event.defaultPrevented) {
+          event.preventDefault();
+      }
+    }
+  }, true);
+
+  eventUtil.addHandler(document, 'touchmove', function(e){
+    clearTimeout(pressTimer);
+  }, true);
+
+  // 点击事件监测
+  eventUtil.addHandler(document, 'touchend', dmTouchMonitor, true);
+
+
+  function dmLongPressMonitor(e){
+    // 处理长按事件
+    console.log('这是长按')
+  }
+
+
+  function dmTouchMonitor(e){
+    var event = e || window.event;
+    event.preventDefault();
+
+    // 处理长按事件
+    pressEndTime = +new Date();
+    clearTimeout(pressTimer);
+
+    if (pressEndTime - pressStartTime < 700) { // 处理点击事件
+      // 处理点击事件
+      console.log('这是点击')
+      
+    }
+  }*/
+
+
+</script>  
+</body>  
+</html>
