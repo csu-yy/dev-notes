@@ -1,0 +1,37 @@
+<!DOCTYPE html>  
+<html>  
+<head>   
+    <meta charset="utf-8"/>  
+    <title>复制代码</title>  
+    <script type="text/javascript" src="http://clue-test.sohu.com/resources/jquery/jquery-1.10.2.min.js"></script>  
+    <script type="text/javascript" src="./jquery.zclip.min.js"></script>  
+    <style type="text/css">
+    /* 复制提示 */
+    .copy-tips{position:fixed;z-index:999;bottom:50%;left:50%;margin:0 0 -20px -50px;background-color:rgba(0, 0, 0, 0.2);filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#30000000, endColorstr=#30000000);padding:3px;}
+    .copy-tips-wrap{padding:10px 20px;text-align:center;border:1px solid #F4D9A6;background-color:#FFFDEE;font-size:14px;}
+    </style>
+</head>  
+<body>
+  <div style="position:relative;">
+    <a class="copyCode" data-copytxt='http://wwww.baidu.com'>复制代码</a>
+  </div>
+  
+  <script type="text/javascript">
+    $(".copyCode").zclip({
+        path: "./ZeroClipboard.swf",
+        copy: function(){
+          return $(this).attr("data-copytxt");
+        },
+        beforeCopy:function(){
+          //$(this).css("color","orange");
+        },
+        afterCopy:function(){/* 复制成功后的操作 */
+          var $copysuc = $("<div class='copy-tips'><div class='copy-tips-wrap'>复制成功</div></div>");
+          $("body").find(".copy-tips").remove().end().append($copysuc);
+          $(".copy-tips").fadeOut(3000);
+        }
+    });
+  </script>
+ 
+</body>  
+</html>
