@@ -1,0 +1,123 @@
+<!DOCTYPE html>  
+<html>  
+<head>   
+    <meta charset="utf-8"/>  
+    <title>原生js实现jsonp</title>
+</head>  
+<body>  
+  <script type="text/javascript">
+    function random() {
+      return Math.floor(Math.random() * 10000 + 500);
+    }
+    function formatParams(data) {
+      var arr = [];
+      for (var name in data) {
+        arr.push(encodeURIComponent(name) + '=' + encodeURIComponent(data[name]));
+      };
+      // 添加一个随机数，防止缓存
+      arr.push('v=' + random());
+      return arr.join('&');
+    }
+
+    // 判断head中是否有特定src的script标签
+    function isHaveScriptBySrc(src){
+      var head = document.getElementsByTagName('head')[0];
+      var childrens = [].slice.call(head.children);
+      return childrens.some(function(item,index,arr){
+        if(item.nodeName.toLowerCase()==='script' && item.src===src){
+          return true;
+        }
+      })
+    }
+
+    // url,data,callback,jsonp(后台字段)，success,error,
+    function ajaxJsonP(params){
+      params = params || {};
+      params.data = params.data || {};
+
+      if (!params.url || !params.callback){
+        throw new Error("jsonp参数错误");
+      }
+
+      var callbackName = params.jsonp || 'callback';
+      // 设置传递给后台的回调参数名
+      params.data[callbackName] = params.callback;
+
+      var _data = formatParams(params.data);
+      var script = document.createElement('script');
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(script);
+
+      // 创建jsonp回调函数
+      window[params.callback] = function(json){
+        isHaveScriptBySrc(params.url+'?'+_data)&&head.removeChild(script);
+        params.time&&clearTimeout(params.time);
+        window[params.callback] = null;
+        params.success&&params.success(json);
+      }
+      //发送请求
+      script.src = params.url+'?'+_data;
+
+      // 为了得知此次请求是否成功，设置超时处理
+      if(params.time){
+        script.time = setTimeout(function(){
+          isHaveScriptBySrc(params.url+'?'+_data)&&head.removeChild(script);
+          params.time&&clearTimeout(params.time);
+          window[params.callback] = null;
+          params.error&&params.error({
+            message: '超时'
+          });
+        }, params.time)
+      }
+      
+    }
+    ajaxJsonP({
+      url: 'https://fans.tv.sohu.com/star/h5/pc/starinfos.json',
+      data: {
+        starids: '313500,317216,274586,11397,1118096,573113,274591,315539,312942,274665,597107',
+        encode: 'GBK',
+        _: 1542854883655
+      },
+      jsonp: 'callback', // 设置传递给后台的参数字段名
+      callback: 'successCallback',
+      success: successCallback,
+      error: error,
+      time: 1000
+    })
+
+    function successCallback(data){
+      console.log(data)
+    }
+    function error(msg){
+      console.log(msg)
+    }
+  </script>
+  
+  <!-- jquery实现jsonp -->
+  <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+  <script>
+    function showData (data) {
+      console.info("调用showData");
+   }
+   $(document).ready(function () {
+      $.ajax({
+        url: "https://fans.tv.sohu.com/star/h5/pc/starinfos.json",
+        type: "GET",
+        data: {
+          starids: '313500,317216,274586,11397,1118096,573113,274591,315539,312942,274665,597107',
+          encode: 'GBK',
+          _: 1542854883655
+        },
+        dataType: "jsonp", //指定服务器返回的数据类型
+        jsonp: "callback", //指定参数名称
+        jsonpCallback: "showData", //指定回调函数名称
+        success: function(data) {
+          console.info("调用success");
+        }
+      });
+
+   });
+   </script>
+ 
+</body>  
+</html>
