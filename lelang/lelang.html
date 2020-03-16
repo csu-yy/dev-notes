@@ -1,0 +1,972 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="pathname" content="bytecom_tetris" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui"/>
+    <link rel="icon" href="https://ad.toutiao.com/favicon.ico" type="image/x-icon" />
+    <style type="text/css" >@charset "utf-8";html{height:100%;color:#000;overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:Arial,Helvetica,'Hiragino Sans GB','Microsoft YaHei',sans-serif;background-color:#FFF}html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0);box-sizing:border-box;margin:0;padding:0}html input{font-family:Arial,Helvetica,'Hiragino Sans GB','Microsoft YaHei',sans-serif}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}del{text-decoration:line-through}address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:500}ol,ul{list-style:none}caption,th{text-align:left}a:hover{text-decoration:underline}ins,a{text-decoration:none}html,body{width:100%}body{min-height:100%;line-height:1.5}#content{width:100%;margin:0 auto}.piece{width:100%;background-color:transparent;position:relative;box-sizing:border-box}.piece.fbottom,.piece.ftop{position:fixed!important;width:100%!important;z-index:10!important}.create-left-content{width:1.867rem;height:auto;text-align:center;z-index:9999;position:fixed;bottom:0;left:0}.create-right-content{width:1.867rem;height:auto;text-align:center;z-index:9999;position:fixed;bottom:0;right:0}.piece.fbottom{top:auto!important;bottom:0!important}.piece.ftop{top:0!important;bottom:auto!important}#content{min-height:100%;position:relative;overflow:hidden}#MEIQIA-PANEL-HOLDER{right:0!important}html::-webkit-scrollbar{display:none}.hide{display:none!important}</style>
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/swiper_302abfc.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/ledfont_ccb326d.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/daymode_1ae66db.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/notice_7471b49.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/bricks/bricks-common_1bbced6.css" />
+    <script id="globalvar">
+        GLOBAL_VAR = {"siteId":"1622436302654471","pageIds":["1622436302654471"],"pageid_map":{"141027":"1622436302654471"},"shareTitle":"乐朗乐读阅读学习","name":"乐朗乐读阅读学习","shareDesc":"","shareThumb":"","adId":"0","ravenOptions":{"release":"bb8df4c","environment":"online","fetchParameters":{"credentials":"include","mode":"no-cors"},"sampleRate":0.1},"sentryDSN":"//c1027a5654ed48c08eebc6c8c6305ac8@www.toutiaopage.com/alarm/415"};
+        componentsConfig = {
+            PanoramaList: []
+        }
+    </script>
+    <script src="//sf3-ttcdn-tos.pstatp.com/obj/ttfe/data/adsite/raven-vue-plugin.min.js" crossorigin="anonymous"></script>
+    <script>
+        try{
+            if(GLOBAL_VAR.ravenOptions.environment === 'online'){
+                const ravenOptions = Object.assign({},GLOBAL_VAR.ravenOptions);
+                Raven.config(GLOBAL_VAR.sentryDSN, ravenOptions).install()
+            }
+        }catch(err){
+            //
+        }
+    </script>
+    <script src="https://s3.pstatp.com/bytecom/resource/vue/lib/vendor_41f269e.js" crossorigin="anonymous"></script>
+    <script src="//sf1-ttcdn-tos.pstatp.com/obj/ttfe/data/adsite/jweixin-1.2.0.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://s3.pstatp.com/bytecom/resource/vue/lib/main_5fdef5d.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/brand_5a9c6d0.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/iconfont_03f5f23.css" />
+    <link rel="stylesheet" type="text/css" href="https://s3.pstatp.com/bytecom/resource/vue/lib/brickicon_2e09b13.css" />
+    <!-- 替换为Vue模板语法 -->
+    
+    <title>乐朗乐读阅读学习</title>
+
+
+
+<script>
+  !function(){"use strict";!function(t,e){var r=t.seed=t.seed||[];if(r.start=+new Date,!r.initialize&&!r.invoked){r.invoked=!0,r.methods=["track","page","on","once","set"],r.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);return e.unshift(t),r.push(e),r}};for(var n=0;n<r.methods.length;n++){var a=r.methods[n];r[a]=r.factory(a)}r.load=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="//s3.pstatp.com/bytecom/resource/tetris/insight/v0.1.23-beta/analytics.js";var r=e.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)},r.SNIPPET_VERSION="1.3.1",r.load()}}(window,document)}();
+  
+  
+  seed.set("renderer", "server");
+  </script>
+  <style>.clearfix::after{display:block;content:"";clear:both}</style>
+  <script>
+  !function(){  try{window.addEventListener("DOMContentLoaded",function(){Array.prototype.slice.call(document.querySelectorAll(".form-tel-autofillbtn"), 0).forEach(function(ele){ele.parentElement.remove()})})}catch(e){};  }();
+  </script>
+  <script type="text/javascript">
+var createClueComp=function(){"use strict";var e={coupon:"coupon_026de.js",lottery:"lottery.3c9154.js",phone:"phone.b23e29.js",phoneEvent:"phone.b23e29.js",consult:"consult.781485.js",normalForm:"normalForm.356cb2.js",creativeForm:"creativeForm.4bfa40.js",commonCaptcha:"commonCaptcha.c6a33c.js"};const o="//s3.pstatp.com/bytecom/resource/clueapp/",n={coupon:o+e.coupon,lottery:o+e.lottery,phone:o+e.phone,phoneEvent:o+e.phoneEvent,consultEvent:o+e.consult,normalForm:o+e.normalForm,creativeForm:o+e.creativeForm,commonCaptcha:o+e.commonCaptcha,creativeCommonCaptcha:o+e.creativeCommonCaptcha};var t=function(e,o,n){if(n)return o();var t=document.createElement("script");t.src=e,t.onload=function(){o()},t.onerror=function(){console.error("clue component load failed, url:",e)},document.head.appendChild(t)};const a=function(e,o){if(e)switch(e){case"normalForm":t(n[e],o,!!window.ClueNormalFormApp);break;default:console.warn("nothing to load, type=",e)}};return function(e,o){if(e)switch(e){case"lottery":t(n[e],function(){new ClueLotteryApp({compId:o.compId||0,advId:o.advId||0,container:o.container||document.querySelector("body"),extraData:o.extraData})});break;case"coupon":t(n[e],function(){});break;case"phoneEvent":t(n[e],function(){window.phoneapp.createPhoneEvent({content:{type:o.type,normalPhoneNumber:o.normalPhoneNumber,smartPhoneContent:{instanceId:o.instanceId,phoneNumber:o.phoneNumber}},advToken:o.advToken},o.container)});break;case"consultEvent":t(n[e],function(){window.consultapp.createConsultEvent({consultType:o.consultType,link:o.link,consultId:o.consultId},o.container)});break;case"phone":t(n[e],function(){window.phoneapp.createPhone({content:{type:o.type,normalPhoneNumber:o.normalPhoneNumber,smartPhoneContent:{instanceId:o.instanceId,phoneNumber:o.phoneNumber}},appearance:{buttonBgColor:o.buttonBgColor,fontColor:o.fontColor,btnText:o.btnText},advToken:o.advToken},o.container)});break;case"creativeForm":t(n[e],function(){});break;case"normalForm":t(n[e],function(){(new window.ClueNormalFormApp).createById({container:o.container,data:o.data,externalSetting:o.externalSetting})},!!window.ClueNormalFormApp);break;case"commonCaptcha":case"creativeCommonCaptcha":t(n[e],function(){});break;case"getClueLoader":return a}}}();
+
+</script></head>
+
+<body id="body" style="">
+    <script type="text/javascript">!function(e){function t(){var e=d.getBoundingClientRect().width;u=e/10,d.style.fontSize=u+"px"}function n(){o.body&&(o.body.style.fontSize=14/(i/10)+"rem")}var i=375,o=e.document,d=o.documentElement,c=d.getBoundingClientRect().width,u=(window.devicePixelRatio||1,c/10),l=null;e.addEventListener("resize",function(){clearTimeout(l),l=setTimeout(t,300)},!1),n(),"complete"===o.readyState?n():o.addEventListener("DOMContentLoaded",function(){n()},!1),t()}(window);</script>
+
+
+    <div id="csrf">
+      <input type='hidden' name='csrfmiddlewaretoken' value='MjMwNzg5LjE1NDc1Mzg1MzkuUG43eUFEd0w3a09CTGlLQzdjTFVDR0tITnVDU3R4R1pmWnh4RE1TTzZzTT0=' />
+    </div>
+
+    <main data-server-rendered="true">
+  <span></span>
+  <section id="frame-19" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://sf6-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547446918289/514ba8074ac05ea4ade97b05ee9e290c" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="frame-30" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div class="piece">
+        <div id="a30" class="video-play">
+          <!---->
+          <!---->
+          <div class="video-layer" style="display: none;"></div>
+          <div tt-videoid="v0205dd80000bgu4bjg2saj3qlupirt0" tt-poster="https://p3.pstatp.com/origin/164b700005044f11075f9" class="tt-video-box" tt-datainited="1" style="margin: 0px auto;">
+            <video src="//up-ads.bjcnc.scs.sohucs.com/lelang.mp4" type="video/mp4" controls="" poster="https://p3.pstatp.com/origin/164b700005044f11075f9" preload="none" webkit-playsinline="" playsinline="" style="width:100%;"></video>
+          </div>
+        </div>
+        <!----></div>
+    </div>
+  </section>
+  <section id="frame-29" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://lf3-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547446182467/cc5b0944cfb551fc28a05682ad9ab122" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <style type="text/css">
+    .clue-code.clue-info .input-div{
+      padding: 0.133rem 0.48rem;
+      position: relative;
+      border-collapse: separate;
+
+      box-sizing: border-box;
+      margin: 0;
+      line-height: 1.5;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-text-size-adjust: none;
+
+    }
+    .input-div input[type=text]{
+      height: 1.067rem;
+      width: 100%;
+      color: #555;
+      font-size: 0.373rem;
+      border: 0.027rem solid #ccc;
+      border-radius: 0.107rem;
+      background-color: #fff;
+      padding: 0.16rem 0.32rem;
+      display: block;
+      -webkit-box-shadow: inset 0 0.027rem 0.027rem rgba(0,0,0,0.075);
+      box-shadow: inset 0 0.027rem 0.027rem rgba(0,0,0,0.075);
+    }
+  
+    .myFielsDiv .info-title.warn-star{ display: block; }
+    .myFielsDiv .info-title.warn-star:after {
+      content: ' *';
+      color: #f85959;
+    }
+    .myFielsDiv label{
+      display: inline-block;
+      max-width: 100%;
+      margin-bottom: 0.133rem;
+      margin-right: 0.4rem;
+    }
+    .myFielsDiv label input{
+      height: 0.347rem;
+      width: 0.347rem;
+      -webkit-appearance: radio;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0;
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      margin-right: 0.133rem;
+      vertical-align: middle;
+    }
+    .myFielsDiv label span{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-text-size-adjust: none;
+      display: inline-block;
+      font-weight: normal;
+      line-height: 1.5;
+      max-width: 8rem;
+      vertical-align: middle;
+    }
+    .clue-code.clue-info .btnDiv{
+      padding: 0.133rem 0.48rem;
+    }
+    .clue-code.clue-info p{
+      display: block;
+      cursor: pointer;
+      color: #fff;
+      height: 1.12rem;
+      line-height: 1.12rem;
+      text-align: center;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      text-decoration: none;
+      font-size: 0.48rem;
+      padding: 0;
+      border: none;
+      border-radius: 0.107rem;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      margin: 0 auto;
+      border-radius: 0.107rem;
+      background-color: #f85959 !important;
+      color: #FFF;
+      height: 1.12rem;
+      line-height: 1.12rem;
+      width: 100%;
+    }
+    .clue-code.clue-info p a:hover{ text-decoration: none; }
+  </style>
+  <section>
+    <div class="clue-code clue-info">
+      <!-- 所处阶段 -->
+      <div class="myFielsDiv" id="myFielsDiv_1">
+        <div class="input-div" required="false" elemtag="input" elemtype="radio" rangemin="" rangemax="">
+          <span class="info-title warn-star color666" style="font-size: 0.32rem; color: #808080">所处阶段</span>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="1">
+            <span class="color333">1年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="2">
+            <span class="color333">2年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="3">
+            <span class="color333">3年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="4">
+            <span class="color333">4年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="5">
+            <span class="color333">5年级</span></label>
+        </div>
+      </div>
+      <!--姓名-->
+      <div class="input-div input-div-name">
+        <span class="info-title color666 hide">姓名：</span>
+        <input type="text" class="name" id="name1" placeholder="学生姓名" maxlength="10"/>
+      </div>
+      <!--手机号-->
+      <div class="input-div input-div-tel">
+        <span class="info-title color666 hide">手机号：</span>
+        <input type="text" class="mobile" id="mobile1" placeholder="您的手机号" maxlength="11"/>
+      </div>
+      <div class="btnDiv">
+        <p id="send1" data-myfielsdivid="myFielsDiv_1">立即提交</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="frame-24" class="brick-frame brick-frame-server hide" style="background-color:rgba(0, 0, 0, 0);">
+    <div class="brick-mask" style="background-color:rgba(0, 0, 0, 0);"></div>
+    <div class="brick-content">
+      <div class="piece form-piece radio-layout-two">
+        <div>
+          <!---->
+          <form id="a24" action_url="/tetris/form/submit/" form_id="1622604408695821" class="form-group-i input-style1">
+            <input type="hidden" name="site_id" value="1622436302654471">
+            <input type="hidden" name="ad_id" value="0">
+            <input type="hidden" name="adv_id" value="109820685647">
+            <span class="csrf-token">
+              <input type='hidden' name='csrfmiddlewaretoken' value='MjMwNzg5LjE1NDc1Mzg1MzkuUG43eUFEd0w3a09CTGlLQzdjTFVDR0tITnVDU3R4R1pmWnh4RE1TTzZzTT0=' /></span>
+            <div class="form-validate-wrapper hide spam-user-validate-wrapper">
+              <div class="validate-dialog spam-user-validate-dialog">
+                <div class="close">
+                  <svg width="14px" height="14px" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.04 9.313l-6.506 6.506a.902.902 0 0 1-1.272 0 .902.902 0 0 1 0-1.272L6.768 8.04.263 1.535a.903.903 0 0 1 0-1.273.904.904 0 0 1 1.272 0L8.04 6.768 14.546.263a.903.903 0 0 1 1.273 0 .904.904 0 0 1 0 1.272L9.313 8.04l6.506 6.506c.35.349.35.921 0 1.272a.902.902 0 0 1-1.272 0L8.04 9.313z" fill="#666" fill-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="title">验证手机</div>
+                <div class="spam-info"></div>
+                <div class="pic-validate hide">
+                  <input type="number" pattern="[0-9]*" name="pic-captcha" placeholder="图片验证码" class="input-style validate-item spam-pic-captcha">
+                  <div class="decor-line"></div>
+                  <img origin-src class="validate-img validate-item">
+                  <span class="nor-btn validate-item spam-refresh-pic-btn">
+                    <i class="iconeditor-refresh"></i>
+                    <span>刷新</span></span>
+                </div>
+                <div class="spam-sms-validate">
+                  <input type="number" pattern="[0-9]*" name="captcha" placeholder="短信验证码" class="input-style validate-item spam-sms-captcha">
+                  <span origin-text="发送短信验证码" class="nor-btn validate-item spam-send-sms ">
+                    <span class="text">发送短信验证码</span>
+                    <span class="timer"></span>
+                  </span>
+                </div>
+                <div class="nor-btn spam-submit">提交</div></div>
+            </div>
+            <!---->
+            <div class="form-elements-wrapper">
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694797" value="所处阶段">
+                <div class="radio-group">
+                  <span id="label" class="radio-addon warn-star" style="color:#808080;">所处阶段</span>
+                  <input type="hidden" name="1622604408694797" class="radio-select">
+                  <div class="radio-control radio-box">
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="1年级" class="radio-style">
+                      <span>1年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="2年级" class="radio-style">
+                      <span>2年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="3年级" class="radio-style">
+                      <span>3年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="4年级" class="radio-style">
+                      <span>4年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="5年级" class="radio-style">
+                      <span>5年级</span></label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694813" value="学生姓名">
+                <div validate="name" class="input-group-i">
+                  <span id="label" class="input-group-addon-i warn-star hide" style="color:#808080;">学生姓名</span>
+                  <div class="m-input-text">
+                    <input required="required" type="text" placeholder="学生姓名" validate="name" eleType="name" uid="15474360857061496098541756352264" name="1622604408694813" class="input-style form-input-i">
+                    <span class="el-input-clear"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694829" value="您的电话">
+                <div validate="cellphone" class="input-group-i">
+                  <span id="label" class="input-group-addon-i warn-star hide" style="color:#808080;">您的电话</span>
+                  <div class="m-input-text">
+                    <input required="required" type="number" placeholder="您的电话" validate="cellphone" eleType="telphone" uid="15474360857064961400006724383585" name="1622604408694829" class="input-style form-input-i">
+                    <span class="el-input-clear"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694845" value="立即提交">
+                <div class="input-group-i">
+                  <div id="submit-result" class="el-result"></div>
+                  <button type="submit" class="btn-i" style="border-radius:0.107rem;background-color:#f85959 !important;color:#FFF;height:1.12rem;line-height:1.12rem;width:100%;">立即提交</button>
+                  <input type="reset" id="reset" style="display:none;">
+                </div>
+              </div>
+            </div>
+            
+            <button type="button" class="btn btn-jump hide"></button>
+            <div data-node="recent-submit-content" class="recent-submit-content" style="color:#333;display:none;">
+              <div class="recent-title">最新报名客户</div>
+              <div class="recent-notification">
+                <i class="icon-notification2"></i>
+              </div>
+              <div class="recent-submit-container-content">
+                <div class="swiper-container"></div>
+              </div>
+            </div>
+            <div class="layer-border"></div>
+          </form>
+          <div><style>.nor-btn {background-color: #f85959}</style></div>
+        </div>
+        <div id="text_captcha_container">
+          <div id="text_captcha">
+            <div id="text_captcha_inner"></div>
+          </div>
+        </div>
+        <div id="slider_captcha_container">
+          <div id="slider_captcha">
+            <div id="slider_captcha_inner"></div>
+          </div>
+        </div>
+        <div id="form_exit_recommend_page_container">
+          <div class="page_inner_container">
+            <div class="page_close_btn"></div>
+            <iframe></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="frame-25" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://sf3-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547446192487/3475e6a003eaee5478a565597be96274" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="frame-26" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://sf6-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547446201582/f6fe1897672234e02fed21648cbbf775" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="frame-28" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://sf3-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547438011804/5a33aedf5e1dc1964d88d9b66de4eaf1" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="clue-code clue-info">
+      <!-- 所处阶段 -->
+      <div class="myFielsDiv" id="myFielsDiv_2">
+        <div class="input-div" required="false" elemtag="input" elemtype="radio" rangemin="" rangemax="">
+          <span class="info-title warn-star color666" style="font-size: 0.32rem; color: #808080">所处阶段</span>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="1">
+            <span class="color333">1年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="2">
+            <span class="color333">2年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="3">
+            <span class="color333">3年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="4">
+            <span class="color333">4年级</span></label>
+          <label class="Label">
+            <input type="radio" name="radio所处阶段" value="5">
+            <span class="color333">5年级</span></label>
+        </div>
+      </div>
+      <!--姓名-->
+      <div class="input-div input-div-name">
+        <span class="info-title color666 hide">姓名：</span>
+        <input type="text" class="name" id="name2" placeholder="学生姓名" maxlength="10"/>
+      </div>
+      <!--手机号-->
+      <div class="input-div input-div-tel">
+        <span class="info-title color666 hide">手机号：</span>
+        <input type="text" class="mobile" id="mobile2" placeholder="您的手机号" maxlength="11"/>
+      </div>
+      <div class="btnDiv">
+        <p id="send2" data-myfielsdivid="myFielsDiv_2">立即提交</p>
+      </div>
+    </div>
+  </section>
+  
+  <div class="popup-wrap hide" id="sendFormSuccess">
+    <div class="popup-box">
+      <div class="title">
+      <div class="success-icon"></div>
+      <span class="notice-title">提交成功</span>
+    </div>
+    <div class="content">表单提交成功!</div>
+      <div class="btn popup-cancle" style="display:none">取消</div>
+      <div class="btn popup-close" id="closesendFormSuccess">关闭</div>
+    </div>
+  </div>
+  <!-- 自定义表单提交 -->
+  <script type="text/javascript">
+    (function () {
+      // 表单1 提交
+      $("#send1,#send2").click(function() {
+        var myFielsDivID = $(this).attr('data-myfielsdivid')
+        var data = getJsonData(myFielsDivID);
+        //增加自定义字段
+        data['myFields'] = getMyFiels(myFielsDivID);
+        if (!checkJson(data)) {
+          return;
+        }
+        data['myFields'] = JSON.stringify(getMyFiels(myFielsDivID, true)); //传给后台的值
+$("#sendFormSuccess").removeClass('hide')
+resetForm();
+
+        $.getJSON("//wclue.go.sohu.com/collect/signUp.do?callback=?", data, function(json) {
+          //$.getJSON("http://clue-dev.sohusce.com/collect/signUp.do?callback=?",data,function(json){
+          if (json && json.success) {
+            resetForm();
+            // alert('提交完成');
+            $("#sendFormSuccess").removeClass('hide')
+          } else {
+            alert(json.msg);
+          }
+        });
+      });
+
+      // 关闭成功弹窗
+      $("#closesendFormSuccess").click(function () {
+        $("#sendFormSuccess").addClass('hide')
+      })
+
+      function getJsonData(myFielsDivID) {
+        // var source = $.getUrlParam('utm_source');
+        // var mediam = $.getUrlParam('utm_mediam');
+        var jsonStr = {
+          "name": myFielsDivID == "myFielsDiv_1" ? $("#name1").val() : $("#name2").val(),
+          // "sex": (!$('input[name="sex"]:checked').val()) ? "" : $('input[name="sex"]:checked').val(),
+          "mobile": myFielsDivID == "myFielsDiv_1" ? $("#mobile1").val() : $("#mobile2").val(),
+          /*"province": dealerList.length==0?((!$("#province").val()) ? "" : $("#province").val()):undefined,
+          "provinceName": dealerList.length==0?((!$("#province").val()) ? "" : $("#province").find("option:selected").text()):undefined,
+          "city": dealerList.length==0?((!$("#city").val()) ? "" : $("#city").val()):undefined,
+          "cityName": dealerList.length==0?((!$("#city").val()) ? "" : $("#city").find("option:selected").text()):undefined,
+          "dealerProvince": dealerList.length?((!$("#province").val()) ? "" : $("#province").val()):undefined,
+          "dealerCity": dealerList.length?((!$("#city").val()) ? "" : $("#city").val()):undefined,
+          "dealerName": (!$("#dealerName").val()) ? "" : $("#dealerName").val(),
+          "buyCarTime": (!$("#buyCarTime").val()) ? "" : $("#buyCarTime").val(),
+          "budget": (!$("#budget").val()) ? "" : $("#budget").val(),
+          "tel": (!$("#tel").val()) ? "" : $("#tel").val(),
+          "email": (!$("#email").val()) ? "" : $("#email").val(),
+          "birthday": (!$("#birthday").val()) ? "" : $("#birthday").val(),
+          "children": (!$('input[name="children"]:checked').val()) ? "" : $('input[name="children"]:checked').val(),
+          "education": (!$("#education").val()) ? "" : $("#education").val(),
+          "organization": (!$("#organization").val()) ? "" : $("#organization").val(),
+          "car": (!$('input[name="car"]:checked').val()) ? "" : $('input[name="car"]:checked').val(),
+          "married": (!$('input[name="married"]:checked').val()) ? "" : $('input[name="married"]:checked').val(),
+          "address": (!$("#address").val()) ? "" : $("#address").val(),
+          "drivinglicense": (!$('input[name="drivinglicense"]:checked').val()) ? "" : $('input[name="drivinglicense"]:checked').val(),
+          "passport": (!$('input[name="passport"]:checked').val()) ? "" : $('input[name="passport"]:checked').val(),
+          "idType": (!$("#idType").val()) ? "" : $("#idType").val(),
+          "idNo": (!$("#idNo").val()) ? "" : $("#idNo").val(),
+          "postcode": (!$("#postcode").val()) ? "" : $("#postcode").val(),*/
+          "projectId":13,
+          /*"source":source,
+          "mediam":mediam,
+          "describe":$("#describe").val(),
+          "pushmessage":$("#pushmessage").is(":checked")?0:1,
+          "haveBuyCarTime": (!$("#haveBuyCarTime").val()) ? "" : $("#haveBuyCarTime").val()*/
+        };
+        return jsonStr;
+      }
+
+      function checkJson(data) {
+        // 验证规则更改为 出现的线索字段都进行必填/选验证
+        // if (isEmpty('name')) {
+        if ($.trim(data.name)=="") {
+          alert('姓名不能为空！');
+          return false;
+        } else if(!_isNum_Chinese_alphabet(data.name) || data.name.length > 10){
+          alert('姓名最多输入10个字符(只能是字母、汉字和数字');
+          return false;
+        }
+
+        // if (isEmpty('mobile')) {
+        if ($.trim(data.mobile)=="") {
+          alert('手机号不能为空！');
+          return false;
+        } else if(!_isMobileNo(data.mobile)){
+          alert('手机号填写不正确');
+          return false;
+        }
+
+        //验证自定义字段
+        if (data.myFields) {
+          var i = 0,
+            _data = data.myFields,
+            l = _data.length;
+          //验证是否必填、验证范围
+          for (; i < l; i += 1) {
+            if ($.trim(_data[i].val) == "" && _data[i].required == "required") {
+              alert(_data[i].key + "为必填（必选）");
+              return false;
+            }
+            if (_data[i]['rangemin']) { //有范围限制
+              var _min = _data[i]['rangemin'],
+                _max = _data[i]['rangemax'];
+              if (_data[i].val.length > _max || _data[i].val < _min) {
+                alert(_data[i].key + "超限（" + (_min + "," + _max) + "）");
+                return false;
+              }
+            }
+          }
+        }
+        return true;
+      }
+
+      //清空表单
+      function resetForm(){
+        $("#name1,#mobile1,#name2,#mobile2").val("");
+        // $("#province,#city,#buyCarTime,#education,#idType,#haveBuyCarTime").val("");
+        // $("#dealerName,#budget,#tel,#email,#birthday,#organization,#address,#idNo,#postcode,#describe").val("");
+        // $("#dealerProvince,#dealerCity,#dealerName").val("");
+
+        // $('#city').empty().append('<option value="">请选择</option>');
+        // $('#dealerName').empty().append('<option value="">请选择</option>');
+
+        // 清空自定义字段数据
+        $('.myFielsDiv input[type="text"]').val('');
+        $('.myFielsDiv select').val('');
+        [].slice.call($('.myFielsDiv input[type="radio"]:checked')).forEach(function(item,index){
+            item.checked = false;
+        });
+        [].slice.call($('.myFielsDiv input[type="checkbox"]:checked')).forEach(function(item,index){
+            item.checked = false;
+        });
+      }
+
+      function isEmpty(id) {
+        return $("#" + id).val() != undefined && $("#" + id).length > 0 && !$("#" + id).val();
+      }
+
+      function isRequireSelect(id) {
+        return $("#" + id).length > 0 && $("#" + id).find("option:selected").val() == "";
+      }
+
+      function _isNum_Chinese_alphabet(str, plg) {
+        var reg = arguments.length > 1 ? /^(\w|[\u4E00-\u9FA5]|[_]|[-])*$/ : /^(\w|[\u4E00-\u9FA5])*$/;
+        if (str.match(reg) != null) {
+          return true;
+        } else {
+          return false;
+        };
+      }
+
+      function _isMobileNo(tel) {
+        //return /^1[3|4|5|8][0-9]\d{4,8}$/.test(tel);
+        //if(/^1[3|4|5|7|8][0-9]\d{4,8}$/.test(tel)){return true;};
+        if (/^1[3|4|5|7|8][0-9]\d{8}$/.test(tel)) {
+          return true;
+        };
+        return false;
+      }
+
+      function getMyFiels(id, plg) {
+        var myFiels = [];
+        var tag = '',
+          type = '';
+        var rl = arguments.length;
+        var keyTxt = '';
+        $("div#" + id).children().each(function() {
+          tag = $(this).attr("elemTag");
+          type = $(this).attr("elemType");
+          keyTxt = $(this).children().eq(0).text();
+          // keyTxt = keyTxt.substring(0,keyTxt.length-1);
+          if (tag == "input") {
+            if (type == "text") {
+              var obj = {};
+              if (rl > 0) { //传给后台
+                obj[keyTxt] = $(this).children().eq(1).val();
+                myFiels.push(obj);
+              } else { //验证用
+                myFiels.push({
+                  "key": keyTxt,
+                  "val": $(this).children().eq(1).val(),
+                  "required": $(this).attr("required"),
+                  "rangemin": $(this).attr("rangemin"),
+                  "rangemax": $(this).attr("rangemax")
+                });
+              }
+
+            }
+            if (type == "radio") {
+              var obj = {};
+              if (rl > 0) {
+                obj[keyTxt] = $(this).children().eq(0).siblings().find(":checked").next().text();
+                myFiels.push(obj);
+              } else {
+                myFiels.push({
+                  "key": keyTxt,
+                  "val": $(this).children().eq(0).siblings().find(":checked").next().text(),
+                  "required": $(this).attr("required")
+                })
+              }
+
+            }
+            if (type == "checkbox") {
+              var obj = {};
+              var val = '';
+              $(this).children().eq(0).siblings().find(":checked").each(function() {
+                val += $(this).next().text() + ",";
+              });
+              val = val.substring(0, val.length - 1);
+              if (rl > 0) {
+                obj[keyTxt] = val;
+                myFiels.push(obj);
+              } else {
+                myFiels.push({
+                  "key": keyTxt,
+                  "val": val,
+                  "required": $(this).attr("required")
+                })
+              }
+            }
+          }
+          if (tag == "select") {
+            var obj = {};
+            if (rl > 0) {
+              obj[keyTxt] = $(this).children().eq(1).find("option:selected").text();
+              myFiels.push(obj);
+            } else {
+              myFiels.push({
+                "key": keyTxt,
+                "val": $(this).children().eq(1).find("option:selected").text(),
+                "required": $(this).attr("required")
+              });
+            }
+
+          }
+        });
+        return myFiels;
+      }
+
+
+
+
+    })()
+  </script>
+
+  <section id="frame-27" class="brick-frame brick-frame-server hide" style="background-color:rgba(0, 0, 0, 0);">
+    <div class="brick-mask" style="background-color:rgba(0, 0, 0, 0);"></div>
+    <div class="brick-content">
+      <div class="piece form-piece radio-layout-two">
+        <div>
+          <!---->
+          <form id="a27" action_url="/tetris/form/submit/" form_id="1622604408695821" class="form-group-i input-style1">
+            <input type="hidden" name="site_id" value="1622436302654471">
+            <input type="hidden" name="ad_id" value="0">
+            <input type="hidden" name="adv_id" value="109820685647">
+            <span class="csrf-token">
+              <input type='hidden' name='csrfmiddlewaretoken' value='MjMwNzg5LjE1NDc1Mzg1MzkuUG43eUFEd0w3a09CTGlLQzdjTFVDR0tITnVDU3R4R1pmWnh4RE1TTzZzTT0=' /></span>
+            <div class="form-validate-wrapper hide spam-user-validate-wrapper">
+              <div class="validate-dialog spam-user-validate-dialog">
+                <div class="close">
+                  <svg width="14px" height="14px" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.04 9.313l-6.506 6.506a.902.902 0 0 1-1.272 0 .902.902 0 0 1 0-1.272L6.768 8.04.263 1.535a.903.903 0 0 1 0-1.273.904.904 0 0 1 1.272 0L8.04 6.768 14.546.263a.903.903 0 0 1 1.273 0 .904.904 0 0 1 0 1.272L9.313 8.04l6.506 6.506c.35.349.35.921 0 1.272a.902.902 0 0 1-1.272 0L8.04 9.313z" fill="#666" fill-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div class="title">验证手机</div>
+                <div class="spam-info"></div>
+                <div class="pic-validate hide">
+                  <input type="number" pattern="[0-9]*" name="pic-captcha" placeholder="图片验证码" class="input-style validate-item spam-pic-captcha">
+                  <div class="decor-line"></div>
+                  <img origin-src class="validate-img validate-item">
+                  <span class="nor-btn validate-item spam-refresh-pic-btn">
+                    <i class="iconeditor-refresh"></i>
+                    <span>刷新</span></span>
+                </div>
+                <div class="spam-sms-validate">
+                  <input type="number" pattern="[0-9]*" name="captcha" placeholder="短信验证码" class="input-style validate-item spam-sms-captcha">
+                  <span origin-text="发送短信验证码" class="nor-btn validate-item spam-send-sms ">
+                    <span class="text">发送短信验证码</span>
+                    <span class="timer"></span>
+                  </span>
+                </div>
+                <div class="nor-btn spam-submit">提交</div></div>
+            </div>
+            <!---->
+            <div class="form-elements-wrapper">
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694797" value="所处阶段">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div class="radio-group">
+                  <span id="label" class="radio-addon warn-star" style="color:#808080;">所处阶段</span>
+                  <input type="hidden" name="1622604408694797" class="radio-select">
+                  <div class="radio-control radio-box">
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="1年级" class="radio-style">
+                      <span>1年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="2年级" class="radio-style">
+                      <span>2年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="3年级" class="radio-style">
+                      <span>3年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="4年级" class="radio-style">
+                      <span>4年级</span></label>
+                    <label class="radio-item">
+                      <input type="radio" name="radio-1622604408694797" value="5年级" class="radio-style">
+                      <span>5年级</span></label>
+                  </div>
+                  <!----></div>
+                <!---->
+                <!---->
+                <!---->
+                <!----></div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694813" value="学生姓名">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div validate="name" class="input-group-i">
+                  <span id="label" class="input-group-addon-i warn-star hide" style="color:#808080;">学生姓名</span>
+                  <div class="m-input-text">
+                    <input required="required" type="text" placeholder="学生姓名" validate="name" eleType="name" uid="15474360857061496098541756352264" name="1622604408694813" class="input-style form-input-i">
+                    <span class="el-input-clear"></span>
+                  </div>
+                  <!---->
+                  <!----></div>
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!----></div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694829" value="您的电话">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div validate="cellphone" class="input-group-i">
+                  <span id="label" class="input-group-addon-i warn-star hide" style="color:#808080;">您的电话</span>
+                  <div class="m-input-text">
+                    <input required="required" type="number" placeholder="您的电话" validate="cellphone" eleType="telphone" uid="15474360857064961400006724383585" name="1622604408694829" class="input-style form-input-i">
+                    <span class="el-input-clear"></span>
+                  </div>
+                  <!---->
+                  <!----></div>
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!----></div>
+              <div class="form-element">
+                <input type="hidden" name="label_1622604408694845" value="立即提交">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <div class="input-group-i">
+                  <div id="submit-result" class="el-result"></div>
+                  <button type="submit" class="btn-i" style="border-radius:0.107rem;background-color:#f85959 !important;color:#FFF;height:1.12rem;line-height:1.12rem;width:100%;">立即提交</button>
+                  <input type="reset" id="reset" style="display:none;">
+                  <!----></div>
+                <!---->
+                <!----></div>
+            </div>
+            <!---->
+            <!---->
+            <button type="button" class="btn btn-jump hide"></button>
+            <div data-node="recent-submit-content" class="recent-submit-content" style="color:#333;display:none;">
+              <div class="recent-title">最新报名客户</div>
+              <div class="recent-notification">
+                <i class="icon-notification2"></i>
+              </div>
+              <div class="recent-submit-container-content">
+                <div class="swiper-container">
+                  <!----></div>
+              </div>
+            </div>
+            <!---->
+            <div class="layer-border"></div>
+            <!----></form>
+          <!---->
+          <div>
+            <style>.nor-btn {background-color: #f85959}</style></div>
+        </div>
+        <div id="text_captcha_container">
+          <div id="text_captcha">
+            <div id="text_captcha_inner"></div>
+          </div>
+        </div>
+        <div id="slider_captcha_container">
+          <div id="slider_captcha">
+            <div id="slider_captcha_inner"></div>
+          </div>
+        </div>
+        <div id="form_exit_recommend_page_container">
+          <div class="page_inner_container">
+            <div class="page_close_btn"></div>
+            <iframe></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="frame-16" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div tetris-data-click="" tetris-data-component-type="image" tetris-data-action-type="click" class="piece image-con">
+        <div class="image-box" style="-webkit-clip-path:none;clip-path:none;">
+          <a target="_blank" href="javascript:void(0);" class="image-link">
+            <div class="image-mask" style="background-color:transparent;border-radius:0;"></div>
+            <img src="https://lf6-ttcdn-tos.pstatp.com/obj/ad-tetris-site/file/1547446486128/88e74860ab92ce4b93cf91e0b1325237" class="image-item" style="border-radius:0;"></a>
+          <span class="image-text"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="frame-12" class="brick-frame brick-frame-server">
+    <div class="brick-mask"></div>
+    <div class="brick-content">
+      <div class="piece">
+        <div class="floor-space" style="height:1.2rem;background-color:rgba(255, 255, 255, 0);"></div>
+      </div>
+    </div>
+  </section>
+  <section id="frame-13" class="brick-frame brick-frame-server" style="padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;background-color:rgba(0, 0, 0, 0);left:0;bottom:0;position:fixed;z-index:21;top:auto;">
+    <div class="brick-mask" style="background-color:rgba(0, 0, 0, 0);"></div>
+    <div class="brick-content">
+      <div class="piece telephone-button">
+        <a id="a13" href="tel:06315906555" data-tel="06315906555" tt-data-eventvalue="06315906555" phone_number="" class="tel-btn style1" style="background-color:#f85959;color:#FFF;line-height:1.173rem;border-radius:0.107rem;border-width:0.027rem;border-color:rgba(0, 0, 0, 0);border-style:none;font-size:0.48rem;width:90%;height:1.173rem;">
+          <i class="brick-i-tel-left icon-telphone_left"></i>
+          <span class="tel-label text-ellipsis">拨打电话</span>
+          <i class="brick-i-tel-right icon-telphone_right"></i>
+          <i class="icon-telphone_circle brick-i-tel"></i>
+          <i class="icon-left_arrow"></i>
+          <input type="hidden" name="site_id" value="1622436302654471">
+          <input type="hidden" name="ad_id" value="0"></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<script type="text/javascript">!function(e){var t=document.getElementsByTagName("head").item(0),n=document.getElementsByTagName("body").item(0),a=document.getElementById("content")||n,i=document.createElement("style"),l=document.createElement("div"),o=document.createElement("div");i.innerHTML="body{position:relative;}.law-text-wrapper {position:absolute;bottom:0;width:100%;display: flex;justify-content: center;align-items: center;padding: 12px 0;background: #F2F2F2;}.law-text-line {width: 14px;height: 1px;line-height: 1px;background: #69768C;}.law-text {margin: 0 8px;line-height: 20px;font-family: PingFangSC-Regular;font-size: 12px;color: #69768C;}",t.appendChild(i),l.className="law-text-wrapper",l.innerHTML='<i class="law-text-line"></i><p class="law-text">橙子建站仅向商家提供技术服务</p><i class="law-text-line"></i>',o.style.height="44px",a.appendChild(o),a.appendChild(l);var c=function(t){if(void 0===e.Raven){var a=document.createElement("script");a.type="text/javascript",a.src="https://sf3-ttcdn-tos.pstatp.com/obj/ttfe/data/adsite/raven-vue-plugin.min.js",n.appendChild(a);var i=5,l=setInterval(function(){if(0===i&&clearInterval(l),--i,void 0!==e.Raven){e.Raven.config("//c1027a5654ed48c08eebc6c8c6305ac8@www.toutiaopage.com/alarm/415",{environment:"online",fetchParameters:{credentials:"include",mode:"no-cors"},release:"8bc11f0"}),e.Raven.captureMessage(t),clearInterval(l)}},1e3)}else e.Raven.captureMessage(t)};function d(){if(document.documentElement.scrollHeight-(l.offsetTop+44)>50){t.removeChild(i),a.removeChild(o),a.removeChild(l);var n="页面："+e.location.href+" 显示免责声明失败";c(n)}}"complete"===document.readyState?d():e.addEventListener("load",d,!1)}(window);
+</script>
+<script type="text/javascript">!function(){function e(){!function(){for(var e=document.getElementsByClassName("brick-frame"),n=0;n<e.length;n++){var o=e[n];!t(o)||0===o.getElementsByClassName("telephone-button").length&&0===o.getElementsByClassName("consult-fix-bottom").length&&0===o.getElementsByClassName("qqcustomer-button").length||o.remove()}}(),function(){for(var e=document.getElementsByClassName("piece"),n=0;n<e.length;n++){var o=e[n];t(o)&&(o.classList.contains("qqcustomer-pos")||o.classList.contains("phone-pos"))&&o.remove()}for(var s=document.getElementsByClassName("create-right-content"),n=0;n<s.length;n++){var o=s[n];0===o.getElementsByClassName("qqcustomer-pos").length&&0===o.getElementsByClassName("phone-pos").length||o.remove()}for(var a=document.getElementsByClassName("create-left-content"),n=0;n<a.length;n++){var o=a[n];o.getElementsByClassName(0!=="qqcustomer-pos".length||0!==document.getElementsByClassName("phone-pos").length)&&o.remove()}}()}function t(e){var t=window.getComputedStyle(e);return"0px"===t.bottom&&"fixed"===t.position}function n(){function e(e){return!!e&&"Function"===Object.prototype.toString.call(e).slice(8,-1)}$('[consulttype="0"]').length>0&&document.addEventListener("click",function(t){var n,o,s,a="0"===$(t.target).attr("consulttype"),r=(n=$(t.target),o='[consulttype="0"]',!(!n.parents||(s=o,"String"!==Object.prototype.toString.call(s).slice(8,-1))||!n.parents(o).length));if(!$(t.target).hasClass("msg-close")&&(a||r)){t.stopPropagation(),t.preventDefault();var l="https:"+($(t.target).attr("smartconsulturl")||$(t.target).parents('[consulttype="0"]').attr("smartconsulturl"))+"&referrer_title="+encodeURIComponent(document.title),i=window._taq&&e(window._taq._get_basedata),c=window._taq&&e(window._taq.get_query_promise),m=i&&window._taq._get_basedata||c&&window._taq.get_query_promise,u=i&&m()||c&&m({event_type:"consult"});u&&u.then(function(e){var t=e.log_extra,n=e.cid,o="sslocal://webview?hide_more=1&use_webview_title=1&use_wk=1&url="+encodeURIComponent(l+"&position=tetris_page_wk")+"&ad_id="+encodeURIComponent(n)+"&log_extra="+encodeURIComponent(t);location.href=o}).catch(function(e){}),u||(location.href=l+"&position=tetris_page")}},!0)}-1!==window.location.search.indexOf("envMode=1")?(e(),n()):function t(o){o>10||(window.ToutiaoJSBridge?window.ToutiaoJSBridge.call("envMode",{},function(t){1===t.envMode&&(e(),n())}):setTimeout(function(){t(o+1)},100))}(0)}();
+</script>
+</body>
+<script src="//s3.pstatp.com/bytecom/resource/track_log/src/tetris-user-action.js" crossorigin="anonymous"></script><script src="https://s3.pstatp.com/bytecom/resource/vue/lib/daymode_391c72d.js" crossorigin="anonymous"></script><script src="https://s3.pstatp.com/bytecom/resource/vue/lib/base64_9f386ef.js" crossorigin="anonymous"></script><script src="https://s3.pstatp.com/bytecom/resource/vue/lib/swiper_c89ca43.js" crossorigin="anonymous"></script><script src="https://s3.pstatp.com/bytecom/resource/vue/lib/notice_45e3f04.js" crossorigin="anonymous"></script>
+<script src="https://s3.pstatp.com/bytecom/resource/vue/bricks/Form/script.landing_f230f99.js" crossorigin="anonymous"></script><script src="https://s3.pstatp.com/bytecom/resource/vue/bricks/TelephoneButton/script.landing_b64bce1.js" crossorigin="anonymous"></script>
+<script>(function(){ var FORM = require("tetris/parse/Form.js");var _FORM = FORM.init({
+                id: "#a24",
+                showJump: "0",
+                successUrl: "",
+                failedUrl: "",
+                successmsg: "",
+                isShowCount: "false",
+                countKit: {"prefix":"目前已经有","middle":100,"subfix":"人参与活动"},
+                countOrder: "sequence",
+                formId: "1622604408695821",
+                locateBgColor: "#f85959",
+                recentSubmitStyle: 0,
+                recentSubmitColor: "#333",
+                caculator: null,
+                isLayerForm: false
+            });var FORM = require("tetris/parse/Form.js");var _FORM = FORM.init({
+                id: "#a27",
+                showJump: "0",
+                successUrl: "",
+                failedUrl: "",
+                successmsg: "",
+                isShowCount: "false",
+                countKit: {"prefix":"目前已经有","middle":100,"subfix":"人参与活动"},
+                countOrder: "sequence",
+                formId: "1622604408695821",
+                locateBgColor: "#f85959",
+                recentSubmitStyle: 0,
+                recentSubmitColor: "#333",
+                caculator: null,
+                isLayerForm: false
+            });var Phone = require("tetris/parse/TelephoneButton.js");Phone.init('#a13', '0', '', '', '', '', '06315906555'); })();</script>
+</html>

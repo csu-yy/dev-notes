@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id='app'>{{ message }}</div>
+  <div id="app2">
+    <span :title='message'>点我</span>
+  </div>
+  <div id="app3">
+    <ul>
+      <li v-for="item in stus">{{ item.name }}{{ item.age }}</li>
+    </ul>
+  </div>
+  <div class='app4'>
+    <span>{{ message }}</span>
+    <button v-on:click='reverseMessage'>逆转消息</button>
+  </div>
+  <script type="text/javascript">
+    let app = new Vue({
+      el: '#app',
+      data: function (argument) {
+        return {
+          message: 'hello word'
+        }
+      }
+    });
+    var app2 = new Vue({
+      el: '#app2',
+      data: function (argument) {
+        return {
+          message: '页面加载于 ' + new Date().toLocaleString()
+        }
+      }
+    });
+    let app3 = new Vue({
+      el: '#app3',
+      data: function (argument) {
+        return {
+          stus: [{'name':'zhangsan','age':1},{'name':'lisi','age':2},{'name':'wangwu','age':3}]
+        }
+      }
+    });
+
+    let app4 = new Vue({
+      el: '.app4',
+      data: {
+        message: 'Hello Vue.js!'
+      },
+      methods: {
+        reverseMessage: function (argument) {
+          this.message = this.message.split('').reverse().join('')
+        }
+      }
+    })
+  </script>
+  <div id="app5">
+    <span>{{ message }}</span>
+    <input type="text" v-model='message'>
+  </div>
+  <script type="text/javascript">
+    let app5 = new Vue({
+      el: '#app5',
+      data: {
+        message: 'defaultValue'
+      }
+    })
+  </script>
+
+
+  <!-- vue component -->
+  <div id="app6">
+    <ol>
+      <!--
+        现在我们为每个 todo-item 提供 todo 对象
+        todo 对象是变量，即其内容可以是动态的。
+        我们也需要为每个组件提供一个“key”，稍后再
+        作详细解释。
+      -->
+      <todo-item
+        v-for="item in groceryList"
+        v-bind:todo="item"
+        v-bind:key="item.id"
+      ></todo-item>
+    </ol>
+  </div>
+  <script type="text/javascript">
+    Vue.component('todo-item', {
+      props: ['todo'],
+      template: '<li class="name">{{ todo.text }}</li>'
+    })
+
+    var app6 = new Vue({
+      el: '#app6',
+      data: {
+        groceryList: [
+          { id: 0, text: '蔬菜' },
+          { id: 1, text: '奶酪' },
+          { id: 2, text: '随便其它什么人吃的东西' }
+        ]
+      }
+    })
+  </script>
+
+<div v-bind:id="dynamicId"></div>
+  <div id="app7" v-bind:class="'class1'" >
+    using mustaches: {{rawHtml1}}
+  </div>
+  <div id="app8">
+    using v-html direactive: <span  v-html="rawHtml1"></span>
+  </div>
+  <script type="text/javascript">
+    const app7 = new Vue({
+      el: '#app7',
+      data: {
+        rawHtml1: '<span style="color: #EDEDED">this should be red</span>'
+      }
+    })
+    const app8 = new Vue({
+      el: '#app8',
+      data: {
+        rawHtml1: '<span style="color: #EDEDED">this should be red</span>'
+      }
+    })
+  </script>
+
+
+  <button id='b1' v-on:[eventName]='value'>点我</button>
+  <script type="text/javascript">
+    var app9 = new Vue({
+      el: "#b1",
+      data: {
+        "eventName": 'click'
+      },
+      methods: {
+        value: ()=>{
+          console.log(1)
+        }
+      }
+    })
+  </script>
+
+
+  <div id="app10">
+    <span>default message: {{ message }}</span>
+    <p>reverse message: {{ reverseMessage1 }}</p>
+    <p>计算属性：{{ reverseMessage() }}</p>
+  </div>
+  <script type="text/javascript">
+    const app10 = new Vue({
+      el: '#app10',
+      data: {
+        message: 'hello'
+      },
+      computed: {
+        reverseMessage1: function (argument) {
+          return this.message.split('').reverse().join('')
+        }
+      },
+      methods: {
+        reverseMessage: function (argument) {
+          return this.message.split('').reverse().join('')
+        }
+      }
+    })
+  </script>
+
+  <div id="demo">
+    <p>fullName: {{ fullName }}</p>
+  </div>
+  <script type="text/javascript">
+    const demo = new Vue({
+      el: '#demo',
+      data: {
+        firstName: 'firstName',
+        lastName: 'lastName',
+      },
+      computed: {
+        fullName: function (argument) {
+          return this.firstName + '-' + this.lastName
+        }
+      }
+    })
+  </script>
+
+
+  <div id="watch-example">
+    <p>
+      Ask a yes/no question:
+      <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+  <script>
+    var watchExampleVM = new Vue({
+      el: '#watch-example',
+      data: {
+        question: '',
+        answer: 'I cannot give you an answer until you ask a question!'
+      },
+      watch: {
+        // 如果 `question` 发生改变，这个函数就会运行
+        question: function (newQuestion, oldQuestion) {
+          this.answer = 'Waiting for you to stop typing...'
+          this.debouncedGetAnswer()
+        }
+      },
+      created: function () {
+        // `_.debounce` 是一个通过 Lodash 限制操作频率的函数。
+        // 在这个例子中，我们希望限制访问 yesno.wtf/api 的频率
+        // AJAX 请求直到用户输入完毕才会发出。想要了解更多关于
+        // `_.debounce` 函数 (及其近亲 `_.throttle`) 的知识，
+        // 请参考：https://lodash.com/docs#debounce
+        this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+      },
+      methods: {
+        getAnswer: function () {
+          if (this.question.indexOf('?') === -1) {
+            this.answer = 'Questions usually contain a question mark. ;-)'
+            return
+          }
+          this.answer = 'Thinking...'
+          var vm = this
+          axios.get('https://yesno.wtf/api')
+            .then(function (response) {
+              vm.answer = _.capitalize(response.data.answer)
+            })
+            .catch(function (error) {
+              vm.answer = 'Error! Could not reach the API. ' + error
+            })
+        }
+      }
+    })
+  </script>
+
+  <div
+  class="static"
+  v-bind:class="{ active: isActive, 'text-danger': isDanger }"
+  >this is num</div>
+  <!-- <script type="text/javascript">
+    const static = new Vue({
+      el: '.static',
+      data: {
+        isActive: true,
+        isDanger: false
+      }
+    })
+  </script> -->
+  <script type="text/javascript">
+    const static = new Vue({
+      el: '.static',
+      data: {
+        isActive: true,
+        error: null
+      },
+      computed: {
+        dynamicClass: function (argument) {
+          console.log(1,this)
+          return {
+            active1: this.isActive && !this.error,
+            'text-danger': this.error && this.error.type === 'fatal'
+          }
+        }
+      }
+    })
+  </script>
+
+  <!-- ？？？ 这个vue的component为啥没显示呢 -->
+  <!-- <div id="mySelf">
+    <my-component class="baz boo"></my-component>
+  </div>
+  <script type="text/javascript">
+    Vue.component('my-component', {
+      template: '<li class="name">er</li>'
+    })
+  </script> -->
+
+  
+
+
+
+  <hr></hr>
+  <div id="todo-list-example">
+    <form v-on:submit.prevent="addNewTodo">
+      <label for="new-todo">Add a todo</label>
+      <input
+        v-model="newTodoText"
+        id="new-todo"
+        placeholder="E.g. Feed the cat"
+      >
+      <button>Add</button>
+    </form>
+    <ul>
+      <li
+        is="todo-item"
+        v-for="(todo, index) in todos"
+        v-bind:key="todo.id"
+        v-bind:title="todo.title"
+        v-on:remove="todos.splice(index, 1)"
+      ></li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    Vue.component('todo-item', {
+      /*template: '\
+        <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')">Remove</button>\
+        </li>\
+      ',*/
+      template: `
+        <li>
+          {{ title }}
+          <button v-on:click="$emit('remove')">Remove</button>
+        </li>
+      `,
+      props: ['title']
+    })
+
+    new Vue({
+      el: '#todo-list-example',
+      data: {
+        newTodoText: '',
+        todos: [
+          {
+            id: 1,
+            title: 'Do the dishes',
+          },
+          {
+            id: 2,
+            title: 'Take out the trash',
+          },
+          {
+            id: 3,
+            title: 'Mow the lawn'
+          }
+        ],
+        nextTodoId: 4
+      },
+      methods: {
+        addNewTodo: function () {
+          this.todos.push({
+            id: this.nextTodoId++,
+            title: this.newTodoText
+          })
+          this.newTodoText = ''
+        }
+      }
+    })
+  </script>
+
+  <hr></hr>
+  <div id="ep1">
+    <button v-on:click="counter += 1">add 1</button>
+    <p>the num is {{ counter }}</p>
+  </div>
+  <script type="text/javascript">
+    const ep1 = new Vue({
+      el: '#ep1',
+      data: {
+        counter: 0
+      }
+    })
+  </script>
+
+
+
+
+
+  <hr />
+  <div id="app-component"></div>
+  <script type="text/javascript">
+    // 生出子  声明子  使用子
+    const MyHeader = {
+      template: `
+        <div>我是header</div>
+      `
+    };
+
+    // 函数调用的方式创建组件
+    const MyBody = Vue.extend({
+      template: `
+        <div>我是函数调用方式的body</div>
+      `
+    })
+    /*const MyBody = {
+      template: `
+        <div>我是body</div>
+      `
+    }*/
+    const MyFooter = {
+      template: `
+        <div>我是底部
+          <button @click="showNum(123)">点我</button>
+        </div>
+      `,
+      methods: {
+        showNum: function (num) {
+          console.log(num)
+        }
+      }
+    }
+
+    // 声明入口组件
+    const App = {
+      components: { // 声明要用的组件们
+        'my-header': MyHeader,
+        'my-body': MyBody,
+        'my-footer': MyFooter,
+      },
+      template: `
+        <div>
+          <my-header />
+          <my-body></my-body>
+          <my-footer></my-footer>
+        </div>
+      `
+    }
+
+    const appComponent = new Vue({
+      el: '#app-component',
+      components: { // 声明要用的组件们
+        'app': App,
+      },
+      template: '<app />',
+    }) 
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

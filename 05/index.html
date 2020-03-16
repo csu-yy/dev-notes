@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+<title>js插入字符到textarea</title> 
+<script language="javascript" type="text/javascript"> 
+function grin(tag) { 
+        var myField; 
+        myField = document.getElementById('content'); 
+        if (document.selection) { 
+                myField.focus(); 
+                sel = document.selection.createRange(); 
+                sel.text = tag; 
+                myField.focus(); 
+        } 
+        else if (myField.selectionStart || myField.selectionStart == '0') { 
+                var startPos = myField.selectionStart; 
+                var endPos = myField.selectionEnd; 
+                var cursorPos = endPos; 
+                myField.value = myField.value.substring(0, startPos) 
+                                          + tag 
+                                          + myField.value.substring(endPos, myField.value.length); 
+                cursorPos += tag.length; 
+                myField.focus(); 
+                myField.selectionStart = cursorPos; 
+                myField.selectionEnd = cursorPos; 
+        } 
+        else { 
+                myField.value += tag; 
+                myField.focus(); 
+        } 
+} 
+</script> 
+</head> 
+
+<body> 
+<button onclick="grin('A')">A</button> 
+<textarea id="content"></textarea> 
+</body> 
+</html> 
+
+

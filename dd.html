@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script type="text/javascript" src="http://clue-test.sohu.com/resources/jquery/jquery-1.10.2.min.js"></script>
+
+  <style type="text/css">
+    /*img{
+      display: inline-block;
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: #ccc;
+      vertical-align: middle;
+    }
+    img:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url('http://svn.go.sohu.com/pmis/factory/sandbox/2018/svntest/images/cc_01.jpg') #ccc;
+    }*/
+  </style>
+
+  <style type="text/css">
+    /*用css3的多背景属性*/
+    /*指定的时候，按浏览器中显示时图像叠放的顺序从上往下指定的，第一个图像文件是放在最上面的，最后指定的文件是放在最下面的*/
+    .img{
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background: url('http://svn.go.sohu.com/pmis/factory/sandbox/2018/svntest/images/1/1.jpg'), url('http://svn.go.sohu.com/pmis/factory/sandbox/2018/svntest/images/cc_01.jpg') #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- <img src='/resouce/img.png' alt="imgTest" onerror="this.src='http://svn.go.sohu.com/pmis/factory/sandbox/2018/svntest/images/cc_01.jpg'" /> -->
+  <div class="img"></div>
+  <script type="text/javascript">
+    var globalVar = 'abc';
+    (function outerFunction(outerArg) {
+      var outerFuncVar = 'x';
+
+      (function innerFunction(innerArg){
+        var innerFuncVar = 'y';
+        console.log(
+          "outerArg = " + outerArg + '\n' +
+          "outerFuncVar = " + outerFuncVar + "\n" +
+          "innerArg = " + innerArg + '\n' +
+          "innerFuncVar = " + innerFuncVar + "\n" +
+          "globalArg = " + globalVar
+        )
+      })(5)
+    })(7)
+  </script>
+
+  <script type="text/javascript">
+    function A(){}
+    function B(a){
+      this.a = a;
+    }
+
+    function C(a){
+      if(a){
+        this.a = a;
+      }
+    }
+
+    A.prototype.a = 1;
+    B.prototype.a = 1;
+    C.prototype.a = 1;
+
+    console.log(new A().a)
+    console.log(new B().a)
+    console.log(new C(2).a)
+  </script>
+
+  <script type="text/javascript">
+    var arr = [1, 2, 3, 4, 5];
+    // var avg = arr.average();
+    // console.log(avg);
+
+    /*Array.prototype.average = function(){
+      var sum = this.reduce(function(prev,cur){
+        return prev + cur
+      })
+      return sum / this.length
+    }*/
+  </script>
+
+  <script type="text/javascript">
+    // multiply(5)(6);
+    function multiply(outerArg){
+      return function(innerArg){
+        return outerArg*innerArg
+      }
+    }
+  </script>
+  <script type="text/javascript">
+    for(var i=0;i<3;i+=1){
+      createB(i)
+    }
+    function createB(i){
+      var btn = document.createElement('button');
+      btn.appendChild(document.createTextNode('button'+i));
+      btn.addEventListener('click',function(){
+        console.log(i)
+      },true)
+      document.body.appendChild(btn);
+    }
+  </script>
+  <script type="text/javascript">
+    var arr1 = 'join'.split('');
+    var arr2 = arr1.reverse();
+    var arr3 = 'jones'.split('');
+
+    arr2.push(arr3);
+
+    console.log('arr1: length='+arr1.length+'last='+arr1.slice(-1)); 
+    console.log('arr2: length='+arr2.length+'last='+arr2.slice(-1)); 
+  </script>
+  <script type="text/javascript">
+    console.log("0 || 1 = "+(0 || 1));  
+    console.log("1 || 2 = "+(1 || 2));
+    console.log("0 && 1 = "+(0 && 1));
+    console.log("1 && 2 = "+(1 && 2));
+  </script>
+  <script type="text/javascript">
+    (function f(n) {
+      return ((n > 1) ? n * f(n - 1) : n)
+    })(10)
+  </script>
+  <script type="text/javascript">
+    // 模拟call
+    Function.prototype.myCall = function(context) {
+      var context = context || window
+      // 给 context 添加一个属性
+      // getValue.call(a, 'yck', '24') => a.fn = getValue
+      context.fn = this
+      // 将 context 后面的参数取出来
+      var args = [...arguments].slice(1)
+      // getValue.call(a, 'yck', '24') => a.fn('yck', '24')
+      var result = context.fn(...args)
+      // 删除 fn
+      delete context.fn
+      return result
+    }
+
+    var obj = {name:'yy'};
+    var name = 'yytest';
+    function getName(name,age){
+      console.log(name);
+      console.log(age);
+      console.log(this.name);
+    }
+    getName.myCall(obj,'y',20);
+  </script>
+  <script type="text/javascript">
+    // 模拟apply
+    Function.prototype.myApply = function(context) {
+      var context = context || window
+      context.fn = this
+
+      var result
+      // 需要判断是否存储第二个参数
+      // 如果存在，就将第二个参数展开
+      if (arguments[1]) {
+        result = context.fn(...arguments[1])
+      } else {
+        result = context.fn()
+      }
+
+      delete context.fn
+      return result
+    }
+    var obj = {name:'yy'};
+    var name = 'yytest';
+    function getName(name,age){
+      console.log(name);
+      console.log(age);
+      console.log(this.name);
+    }
+    getName.myApply(obj,['y',20]);
+  </script>
+  <script type="text/javascript">
+    // 模拟 bind
+    Function.prototype.myBind = function(context){
+      if(typeof this!=='function'){
+        throw new TypeError('Error');
+      }
+      var _this = this;
+      var args = [...arguments].slice(1);
+
+      // 返回一个函数
+      return function F(){
+        // 因为返回了一个函数，所以我们可以 new F(),所以需要判断
+        if(this instanceof F){
+          return new _this(...args,...arguments);
+        }
+        return _this.apply(context,args.concat(...arguments));
+      }
+    }
+
+    var obj = {name:'yy'};
+    function getName(name,age){
+      console.log(name);
+      console.log(age);
+      console.log(this.name);
+    }
+    getName.bind(obj,'dh',21)()  // 或者 getName.bind(obj)('dh',21)
+  </script>
+  <script type="text/javascript">
+    function formatParams(params) {
+      var str = ''
+      for(var k in params){
+        str += k+'='+encodeURI(params[k])+'&'
+      }
+      return str;
+    }
+
+    // 判断head中是否有特定src的script标签
+    function isHaveScriptBySrc(src){
+      var head = document.getElementsByTagName('head')[0];
+      var childrens = [].slice.call(head.children);
+      return childrens.some(function(item,index,arr){
+        if(item.nodeName.toLowerCase()==='script' && item.src===src){
+          return true
+        }
+      })
+    }
+
+    // url,data,callback,jsonp(后台字段)，success,error,
+    function ajaxJsonP(params){
+      params = params || {};
+      params.data = params.data || {};
+
+      if (!params.url || !params.callback){
+        throw new Error("jsonp参数错误");
+      }
+
+      var callbackName = params.jsonp || 'callback';
+      // 设置传递给后台的回调参数名
+      params.data[callbackName] = params.callback;
+
+      var _data = formatParams(params.data);
+      var script = document.createElement('script');
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(script);
+
+      // 创建jsonp回调函数
+      window[params.callback] = function(json){
+        isHaveScriptBySrc(params.url+'?'+_data)&&head.removeChild(script);
+        params.time&&clearTimeout(params.time);
+        window[params.callback] = null;
+        params.success&&params.success(json);
+      }
+      //发送请求
+      script.src = params.url+'?'+_data;
+
+      // 为了得知此次请求是否成功，设置超时处理
+      if(params.time){
+        script.time = setTimeout(function(){
+          isHaveScriptBySrc(params.url+'?'+_data)&&head.removeChild(script);
+          params.time&&clearTimeout(params.time);
+          window[params.callback] = null;
+          params.error&&params.error({
+            message: '超时'
+          });
+        }, params.time)
+      }
+      
+    }
+
+    ajaxJsonP({
+      url: 'https://fans.tv.sohu.com/star/h5/pc/starinfos.json',
+      data: {
+        starids: '313500,317216,274586,11397,1118096,573113,274591,315539,312942,274665,597107',
+        encode: 'GBK',
+        _: 1542854883655
+      },
+      jsonp: 'callback', // 设置传递给后台的参数字段名
+      callback: 'successCallback',
+      success: successCallback,
+      error: error,
+      time: 1000
+    })
+
+    function successCallback(data){
+      console.log(data)
+    }
+    function error(msg){
+      console.log(msg)
+    }
+  </script>
+
+  <!-- <script type="text/javascript">
+    let counter = null
+    for(let i =0;i<5;i++){
+      counter=null
+      counter = setInterval(function(){
+        console.log(i)
+      }, 1000)
+      if(i>=4){
+        clearInterval(counter)
+      }
+    }
+    // 为什么这里只清除了最后一个定时器呢？
+  </script> -->
+</body>
+</html>

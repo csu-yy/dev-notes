@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js生成唯一的uuid</title>
+  <script>
+    // 根据时间加上一个随机数来自动生成uuid，保证生成的id是唯一的
+    var uuid = "cms"+mydate.getDay()+ mydate.getHours()+ mydate.getMinutes()+mydate.getSeconds()+mydate.getMilliseconds()+ Math.round(Math.random() * 10000);
+    
+
+    //用于生成uuid
+    function S4() {
+      return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+    }
+    function guid() {
+      return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    }
+
+
+
+    document.write(Math.random()*(20-10)+10);     // 返回10-20的随机数
+    document.write(Math.random()*(n-m)+m);        //返回指定范围的随机数(m-n之间)的公式
+
+
+    // 参数min为随机数最小值 max为随机数最大值 得到的随机数范围为[min,max]
+    function getRandom(min,max){
+      return Math.floor(Math.random()*(max+1-min)+min)
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

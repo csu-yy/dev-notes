@@ -926,7 +926,7 @@
           })
         } catch (n) {}
       },
-      _send_log: function(e, t) {
+      _send_log: function(e, t) {//gyy
         var n = q.isAwemeCompatible(),
           o = q.isLiveCompatible();
         if (t === !0 && this._send_http_log(e), q.isToutiao()) {
@@ -1117,10 +1117,11 @@
   }
   if (!e._taq) {
     var r = document.currentScript;
-    e._taq = [], o("https://s3.pstatp.com/inapp/toutiao.js", function() {
+        e._taq = [], 
+    o("https://s3.pstatp.com/inapp/toutiao.js", function() {
       if (n(), "undefined" == typeof window._page_type) {
         var e = ["ad.toutiao.com", "www.toutiaopage.com", "www.chengzijianzhan.com"].indexOf(location.hostname) > -1,
-          t = location.search.indexOf("_toutiao_params") > -1;
+            t = location.search.indexOf("_toutiao_params") > -1;
         !e && t && ! function() {
           "use strict";
           ! function(e, t) {
